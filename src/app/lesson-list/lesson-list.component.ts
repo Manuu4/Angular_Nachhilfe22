@@ -5,14 +5,14 @@ import {NachhilfeService} from "../shared/nachhilfe.service";
 @Component({
   selector: 'bs-lesson-list',
   templateUrl: './lesson-list.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class LessonListComponent implements OnInit {
 
   lessons : Lesson[] = [];
 
   @Output() showDetailsEvent = new EventEmitter<Lesson>();
+
   constructor(private bs: NachhilfeService) { }
 
   ngOnInit(): void {

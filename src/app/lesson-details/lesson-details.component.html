@@ -1,4 +1,3 @@
-<!--suppress ALL -->
 <div class="ui grid" *ngIf="lesson">
   <div class="twelve wide column">
     <h1 class="ui header">{{lesson.title}}</h1>
@@ -26,9 +25,10 @@
     <h3 class="ui header">Beschreibung</h3>
     {{ lesson.description }}
   </div>
-</div>
-<div class="ui" *ngIf="lesson?.status">
+  <div class="ui" *ngIf="lesson?.status">
   <i class="green ellipsis icon"></i>
+  </div>
 </div>
+
 
 <button (click)="showLessonList()" class="ui red button">Zurück zur Liste</button>

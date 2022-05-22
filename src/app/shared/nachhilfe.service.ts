@@ -36,4 +36,9 @@ export class NachhilfeService {
   getAll(){
     return this.lessons;
   }
+
+  getSingle(id: number) : Lesson {
+    return <Lesson>this.lessons.find(lesson => lesson.id == id);
+  }
+
 }

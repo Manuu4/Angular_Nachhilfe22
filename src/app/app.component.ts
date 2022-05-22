@@ -3,8 +3,7 @@ import {Lesson} from "./shared/lesson";
 
 @Component({
   selector: 'bs-root',
-  template: `<bs-lesson-list (showDetailsEvent)="showDetails($event)" *ngIf="listOn"></bs-lesson-list>
-  <bs-lesson-details (showListEvent)="showList()" *ngIf="detailsOn" [lesson]="lesson"></bs-lesson-details>`,
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 

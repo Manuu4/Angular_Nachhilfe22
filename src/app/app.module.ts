@@ -8,6 +8,7 @@ import { LessonDetailsComponent } from './lesson-details/lesson-details.componen
 import { NachhilfeService } from './shared/nachhilfe.service';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
