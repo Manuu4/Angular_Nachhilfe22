@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Lesson, User, Course} from "../shared/lesson";
 
 @Component({
@@ -11,6 +11,7 @@ export class LessonListComponent implements OnInit {
 
   lessons : Lesson[] = [];
 
+  @Output() showDetailsEvent = new EventEmitter<Lesson>();
   constructor() { }
 
   ngOnInit(): void {
@@ -39,7 +40,12 @@ export class LessonListComponent implements OnInit {
 
     console.log(this.lessons);
 
-
   }
+
+  showDetails(lesson : Lesson){
+    console.log(lesson);
+    this.showDetailsEvent.emit(lesson);
+  }
+
 
 }

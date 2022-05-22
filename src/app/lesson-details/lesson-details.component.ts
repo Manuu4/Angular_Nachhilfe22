@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import {Lesson} from "../shared/lesson";
 
 @Component({
@@ -10,13 +10,20 @@ import {Lesson} from "../shared/lesson";
 export class LessonDetailsComponent implements OnInit {
 
   @Input() lesson: Lesson | undefined;
+  @Output() showListEvent = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // getRating(num: number){
-  //   return new Array(num);
-  // }
+  // Beispiel aus IVL für Bücher; Keine Verwendung hier:
+  //    getRating(num: number){
+  //      return new Array(num);
+  //    }
+
+  showLessonList(){
+    this.showListEvent.emit();
+  }
 
 }
+
