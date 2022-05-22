@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Lesson, User, Course} from "../shared/lesson";
+import {NachhilfeService} from "../shared/nachhilfe.service";
 
 @Component({
   selector: 'bs-lesson-list',
@@ -12,32 +13,10 @@ export class LessonListComponent implements OnInit {
   lessons : Lesson[] = [];
 
   @Output() showDetailsEvent = new EventEmitter<Lesson>();
-  constructor() { }
+  constructor(private bs: NachhilfeService) { }
 
   ngOnInit(): void {
-    this.lessons = [
-      new Lesson(
-        1,
-        'Wir lernen zusammen',
-        'Hier lernt man dies',
-        3,
-        'offen',
-        new User(1,'Manu', 'Strobel', 'KWM', true, 'manu@gmail.com'),
-        new Course(1,'Komm-Wissenschaften', 'Alles dzu dem Thema', 4),
-        new Date('2022,5,28')
-      ),
-      new Lesson(
-        2,
-        'Ein wenig üben',
-        'Hier lernt man jenes',
-        3,
-        'offen',
-        new User(2,'Marc', 'Strobel', 'KWM', true, 'marc@gmail.com'),
-        new Course(1,'Adaptivität', 'Ganz viel Input', 6),
-        new Date('2022,6,30'),
-        new Date('2022,1,11')
-    )];
-
+    this.lessons = this.bs.getAll();
     console.log(this.lessons);
 
   }

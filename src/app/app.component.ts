@@ -4,9 +4,11 @@ import {Lesson} from "./shared/lesson";
 @Component({
   selector: 'bs-root',
   template: `<bs-lesson-list (showDetailsEvent)="showDetails($event)" *ngIf="listOn"></bs-lesson-list>
-  <bs-lesson-details (showListEvent)="showList()" *ngIf="detailsOn"></bs-lesson-details>`,
+  <bs-lesson-details (showListEvent)="showList()" *ngIf="detailsOn" [lesson]="lesson"></bs-lesson-details>`,
 })
 export class AppComponent {
+
+  lesson : Lesson | undefined;
 
   listOn = true;
   detailsOn = false;
@@ -22,7 +24,7 @@ export class AppComponent {
     this.detailsOn = true;
   }
 
-  lesson : Lesson | undefined;
+
 
   title = 'nachhilfe22';
 }
