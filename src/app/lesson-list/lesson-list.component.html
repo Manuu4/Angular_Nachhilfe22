@@ -1,0 +1,13 @@
+<div class="ui middle aligned selection divided list">
+  <a *ngFor="let lesson of lessons" class="item">
+    <div class="content">
+      <div class="header">{{lesson.title}}</div>
+      <div class="description">{{lesson.course.name}}</div>
+      <div class="description">{{lesson.timeslot1}}</div>
+      <div *ngIf="lesson.timeslot2" class="description">{{lesson.timeslot2}}</div>
+      <div class="description">{{lesson.description}}</div>
+      <div class="description">{{lesson.status}}</div>
+      <div class="extra">{{lesson.user.firstname}} {{lesson.user.lastname}}</div>
+    </div>
+  </a>
+</div>
