@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Lesson} from "./shared/lesson";
 
 @Component({
@@ -27,3 +27,5 @@ export class AppComponent {
 
   title = 'nachhilfe22';
 }
+
+

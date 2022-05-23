@@ -31,4 +31,10 @@
 </div>
 
 
-<button (click)="showLessonList()" class="ui red button">Zurück zur Liste</button>
+
+
+<button [routerLink]="'/lessons'" class="ui red button">Zurück zur Liste</button>
+<button class="ui red button" (click)="removeLesson()">
+  <i class="remove icon"></i>
+  Einheit entfernen
+</button>

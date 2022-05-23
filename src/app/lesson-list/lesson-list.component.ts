@@ -16,7 +16,7 @@ export class LessonListComponent implements OnInit {
   constructor(private bs: NachhilfeService) { }
 
   ngOnInit(): void {
-    this.lessons = this.bs.getAll();
+    this.bs.getAll().subscribe(res => this.lessons = res);
     console.log(this.lessons);
 
   }
