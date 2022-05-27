@@ -46,6 +46,10 @@ export class NachhilfeService {
     return this.http.get<Array<Lesson>>(`${this.api}/lessons`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  getAllCourses(): Observable<Array<Course>>{
+    return this.http.get<Array<Lesson>>(`${this.api}/courses`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   getSingle(id: string) : Observable<Lesson> {
     return this.http.get<Lesson>(`${this.api}/lessons/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
@@ -56,6 +60,10 @@ export class NachhilfeService {
 
   getAllSearch(searchTerm:string) : Observable<Array<Lesson>> {
     return this.http.get<Lesson>(`${this.api}/lessons/search/${searchTerm}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  update(lesson:Lesson) : Observable<any>{
+    return this.http.put<Lesson>(`${this.api}/lessons/${lesson.id}`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
   private errorHandler(error: Error | any): Observable<any>{

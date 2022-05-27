@@ -1,0 +1,43 @@
+<h1>Einheit Formular</h1>
+
+<form class="ui large form" [formGroup]="lessonForm" (ngSubmit)="submitForm()">
+
+  <input type="hidden" formControlName="id">
+
+  <div class="field">
+    <label>Titel</label>
+    <input formControlName="title">
+    <div *ngIf="errors['title']" class="ui negative message">{{ errors['title']}}</div>
+  </div>
+
+  <div class="field">
+    <label>Beschreibung</label>
+    <textarea formControlName="description" rows="3"></textarea>
+    <div *ngIf="errors['description']" class="ui negative message">{{ errors['description']}}</div>
+  </div>
+
+  <div class="field">
+    <label>Kurs</label>
+    <select name="kursauswahl" id="kursauswahl" formControlName="course">
+      <option *ngFor="let course of courses" value="course.id" [selected]="course.id === lesson.course.id">{{ course.name }}</option>
+    </select>
+<!--    <input formControlName="course">-->
+    <div *ngIf="errors['course']" class="ui negative message">{{ errors['course']}}</div>
+  </div>
+
+  <div class="field">
+    <label>Termin 1</label>
+    <input type="DateTime" formControlName="timeslot1" />
+    <div *ngIf="errors['timeslot1']" class="ui negative message">{{ errors['timeslot1']}}</div>
+  </div>
+
+  <div class="field">
+    <label>Termin 2 (optional)</label>
+    <input type="DateTime" formControlName="timeslot2" />
+    <div *ngIf="errors['timeslot2']" class="ui negative message">{{ errors['timeslot2']}}</div>
+  </div>
+
+  <button type="submit" class="ui button" [disabled]="lessonForm.invalid">Speichern</button>
+
+
+</form>

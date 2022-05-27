@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { SearchComponent } from './search/search.component';
+import { LessonFormComponent } from './lesson-form/lesson-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,10 +20,11 @@ import { SearchComponent } from './search/search.component';
     LessonListItemComponent,
     LessonDetailsComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    LessonFormComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, HttpClientModule
+    BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule
   ],
   providers: [NachhilfeService],
   bootstrap: [AppComponent]

@@ -15,6 +15,7 @@ export class Lesson {
     public status: string,
     public user: User,
     public course: Course,
+    // public course: Course["id"],
     public timeslot1: Date,
     public timeslot2?: Date,
     public truetimeslot?: Date
