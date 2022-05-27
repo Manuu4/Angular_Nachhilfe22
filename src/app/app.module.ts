@@ -9,6 +9,7 @@ import { NachhilfeService } from './shared/nachhilfe.service';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {HttpClientModule} from "@angular/common/http";
     LessonListComponent,
     LessonListItemComponent,
     LessonDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule

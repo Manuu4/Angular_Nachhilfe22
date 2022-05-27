@@ -7,5 +7,8 @@
 <div class="ui container">
   <h1>Home</h1>
   <p>FHOÖ Nachhilfeportal</p>
-  <a routerLink="../lessons" class="ui red button">{{randomWelcomeText}}</a>
+  <p><bs-search class="column" (lessonSelected)="lessonSelected($event)"></bs-search></p>
+<!--  <a routerLink="../lessons" class="ui red button">{{randomWelcomeText}}</a>-->
+  <a routerLink="../lessons" class="ui red button">Los geht's</a>
+
 </div>

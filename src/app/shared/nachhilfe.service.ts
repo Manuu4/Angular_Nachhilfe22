@@ -54,6 +54,10 @@ export class NachhilfeService {
     return this.http.delete(`${this.api}/lessons/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  getAllSearch(searchTerm:string) : Observable<Array<Lesson>> {
+    return this.http.get<Lesson>(`${this.api}/lessons/search/${searchTerm}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   private errorHandler(error: Error | any): Observable<any>{
     return throwError(() => new Error(error));
   }

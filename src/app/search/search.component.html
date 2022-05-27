@@ -1,0 +1,16 @@
+
+<div class="ui search" [ngClass]="{loading : isLoading}">
+  <div class="ui icon input">
+<input type="text" placeholder="Suche ..."
+(keyup)="keyup.emit(searchTerm.value)" #searchTerm class="prompt">
+    <i class="search icon"></i>
+</div>
+  <div class="results transition" [ngClass]="{ visible : foundLessons.length > 0 }">
+    <a href (click)="lessonSelected.emit(lesson); false" class="result"
+    *ngFor="let lesson of foundLessons">
+      <div class="content">
+        <div class="title">{{ lesson.title }}</div>
+      </div>
+    </a>
+  </div>
+</div>
