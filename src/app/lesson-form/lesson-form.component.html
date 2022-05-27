@@ -18,8 +18,8 @@
 
   <div class="field">
     <label>Kurs</label>
-    <select name="kursauswahl" id="kursauswahl" formControlName="course">
-      <option *ngFor="let course of courses" value="course.id" [selected]="course.id === lesson.course.id">{{ course.name }}</option>
+    <select name="kursauswahl" id="kursauswahl" formControlName="course_id">
+      <option *ngFor="let course of courses" [value]="course.id" [selected]="course.id === lesson.course.id">{{ course.name }}</option>
     </select>
 <!--    <input formControlName="course">-->
     <div *ngIf="errors['course']" class="ui negative message">{{ errors['course']}}</div>

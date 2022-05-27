@@ -62,7 +62,7 @@ export class NachhilfeService {
     return this.http.get<Lesson>(`${this.api}/lessons/search/${searchTerm}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  update(lesson:Lesson) : Observable<any>{
+  update(lesson: Lesson) : Observable<any>{
     return this.http.put<Lesson>(`${this.api}/lessons/${lesson.id}`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 

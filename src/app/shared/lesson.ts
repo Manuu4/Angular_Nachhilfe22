@@ -1,6 +1,7 @@
-import { Course } from "./course";
+import {Course} from "./course";
 import {User} from "./user";
-export { Course } from "./course";
+
+export {Course} from "./course";
 export {User} from "./user";
 
 export class Lesson {
@@ -15,11 +16,10 @@ export class Lesson {
     public status: string,
     public user: User,
     public course: Course,
-    // public course: Course["id"],
+    public course_id: string,
     public timeslot1: Date,
     public timeslot2?: Date,
     public truetimeslot?: Date
-
   ) {
 
   }

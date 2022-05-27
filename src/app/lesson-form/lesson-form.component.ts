@@ -6,6 +6,7 @@ import {NachhilfeService} from "../shared/nachhilfe.service";
 import {LessonFormMessages} from "./lesson-form-messages";
 import { Course } from '../shared/course';
 import {Lesson} from "../shared/lesson";
+import {empty, isEmpty} from "rxjs";
 
 @Component({
   selector: 'bs-lesson-form',
@@ -54,8 +55,8 @@ export class LessonFormComponent implements OnInit {
       timeslot1: [
         this.lesson.timeslot1, Validators.required],
       timeslot2: this.lesson.timeslot2,
-      course: [this.lesson.course.name, Validators.required],
-
+      course: [this.lesson.course, Validators.required],
+      course_id: [this.lesson.course_id]
     });
 
     this.lessonForm.statusChanges.subscribe(() =>
@@ -88,6 +89,7 @@ export class LessonFormComponent implements OnInit {
   submitForm() {
     const lesson: Lesson = LessonFactory.fromObject(this.lessonForm.value);
     // lesson.course = this.lesson.course;
+
     if(this.isUpdatingLesson){
       this.bs.update(lesson).subscribe(res => {
         this.router.navigate(['../../lessons', lesson.id], {
