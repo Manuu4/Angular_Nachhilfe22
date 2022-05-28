@@ -12,6 +12,7 @@ export class Proposal {
     public time: Date,
     public status: string,
     public user: User,
+    // hier ggf user_id
     public lesson: Lesson,
     public message?: string
   ) {

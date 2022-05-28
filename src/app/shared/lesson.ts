@@ -14,7 +14,7 @@ export class Lesson {
     public description: string,
     public taker: string,
     public status: string,
-    public user: User,
+    public user_id: number,
     public course: Course,
     public course_id: string,
     public timeslot1: Date,

@@ -66,6 +66,10 @@ export class NachhilfeService {
     return this.http.put<Lesson>(`${this.api}/lessons/${lesson.id}`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  create(lesson: Lesson) : Observable<any> {
+    return this.http.post<Lesson>(`${this.api}/lessons`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+  
   private errorHandler(error: Error | any): Observable<any>{
     return throwError(() => new Error(error));
   }

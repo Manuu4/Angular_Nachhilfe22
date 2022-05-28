@@ -96,6 +96,13 @@ export class LessonFormComponent implements OnInit {
           relativeTo: this.route
         });
       });
+    } else {
+      lesson.user_id = 1;
+      this.bs.create(lesson).subscribe(res => {
+        this.lesson = LessonFactory.empty();
+        this.lessonForm.reset(LessonFactory.empty());
+        this.router.navigate(["../lessons"], {relativeTo: this.route});
+      });
     }
   }
 
