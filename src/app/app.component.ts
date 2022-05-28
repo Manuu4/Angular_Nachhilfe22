@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Lesson} from "./shared/lesson";
+import {AuthenticationService} from "./shared/authentication.service";
 
 @Component({
   selector: 'bs-root',
@@ -12,18 +13,27 @@ export class AppComponent {
   listOn = true;
   detailsOn = false;
 
-  showList(){
-    this.listOn = true;
-    this.detailsOn = false;
+  constructor(private authService: AuthenticationService) {
   }
 
-  showDetails(lesson:Lesson){
-    this.lesson = lesson;
-    this.listOn = false;
-    this.detailsOn = true;
+  // showList(){
+  //   this.listOn = true;
+  //   this.detailsOn = false;
+  // }
+  //
+  // showDetails(lesson:Lesson){
+  //   this.lesson = lesson;
+  //   this.listOn = false;
+  //   this.detailsOn = true;
+  // }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 
-
+  getLoginLabel(){
+    return this.isLoggedIn() ? "Logout" : "Login";
+  }
 
   title = 'nachhilfe22';
 }

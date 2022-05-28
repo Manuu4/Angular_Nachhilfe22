@@ -12,6 +12,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { SearchComponent } from './search/search.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import {AuthenticationService} from "./shared/authentication.service";
 
 @NgModule({
   declarations: [
@@ -21,12 +23,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     LessonDetailsComponent,
     HomeComponent,
     SearchComponent,
-    LessonFormComponent
+    LessonFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule
   ],
-  providers: [NachhilfeService],
+  providers: [NachhilfeService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

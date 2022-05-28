@@ -4,6 +4,7 @@ import {LessonDetailsComponent} from "./lesson-details/lesson-details.component"
 import {LessonListComponent} from "./lesson-list/lesson-list.component";
 import {HomeComponent} from "./home/home.component";
 import {LessonFormComponent} from "./lesson-form/lesson-form.component";
+import {LoginComponent} from "./login/login.component";
 
 
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'lessons/:id', component: LessonDetailsComponent},
   {path: 'admin', component: LessonFormComponent},
   {path: 'admin/:id', component: LessonFormComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
