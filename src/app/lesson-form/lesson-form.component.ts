@@ -97,7 +97,8 @@ export class LessonFormComponent implements OnInit {
         });
       });
     } else {
-      lesson.user_id = '1';
+      // lesson.user_id = '1';
+      lesson.user.id = '0';
       this.bs.create(lesson).subscribe(res => {
         this.lesson = LessonFactory.empty();
         this.lessonForm.reset(LessonFactory.empty());

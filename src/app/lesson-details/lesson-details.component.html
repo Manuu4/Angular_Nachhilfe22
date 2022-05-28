@@ -6,7 +6,8 @@
     <div class="ui grid">
       <div class="four wide column">
         <h4 class="ui header">Dein*e Helfer*in</h4>
-        <span>{{ lesson.user_id }} <!--{{ lesson.user_id }}--> </span>
+        <!-- <span>{{ lesson.user_id }} </span>  OLD-->
+        <span>{{ lesson.user.firstname }} {{ lesson.user.lastname }} </span> <!-- NEW -->
       </div>
       <div class="four wide column">
         <h4 class="ui header">Termin 1</h4>
@@ -34,11 +35,11 @@
 
 
 
-<a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', lesson?.id]">
+<a *ngIf="authService.isLoggedIn() && authService.userIsHelper()" class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', lesson?.id]">
   <i class="write icon"></i> Einheit bearbeiten
 </a>
 
-<button class="ui red button" (click)="removeLesson()">
+<button *ngIf="authService.isLoggedIn() && authService.userIsHelper()" class="ui red button" (click)="removeLesson()">
   <i class="remove icon"></i>
   Einheit entfernen
 </button>

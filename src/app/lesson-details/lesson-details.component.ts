@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NachhilfeService} from "../shared/nachhilfe.service";
 import {Subject} from "rxjs";
 import {LessonFactory} from "../shared/lesson-factory";
+import {AuthenticationService} from "../shared/authentication.service";
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LessonDetailsComponent implements OnInit {
   constructor(
     private bs: NachhilfeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {

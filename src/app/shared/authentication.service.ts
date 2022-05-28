@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import jwt_decode from "jwt-decode";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import jwtDecode from "jwt-decode";
 
 
 
@@ -9,14 +10,15 @@ interface Token {
   exp: number;
   user: {
     id: string;
-  }
+    helper: string;
+  };
 }
 
 @Injectable()
 
 export class AuthenticationService {
 
-  private api = 'http://nachhilfe22.s1910456032.student.kwmhgb.at/api/auth';
+  private api : string = 'http://nachhilfe22.s1910456032.student.kwmhgb.at/api/auth';
 
   constructor(private http: HttpClient) {  }
 
@@ -27,34 +29,32 @@ export class AuthenticationService {
     });
   }
 
-  public getCurrentUserId() {
+  public getCurrentUserId () {
     return Number.parseInt(<string>sessionStorage.getItem("userId"));
   }
 
-  // public getUserHelperRole() {
-  //   return Number.parseInt(<string>sessionStorage.getItem("helper"));
-  // }
 
-  public setSessionStorage(token:string) {
-    console.log("storing token");
-    console.log(jwt_decode(token));
-
-    const decodedToken = jwt_decode(token) as Token;
-
-    console.log("decoded Token");
-    console.log(decodedToken);
-    console.log("decoded Token user id");
-    console.log(decodedToken.user.id);
-
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("userId", decodedToken.user.id);
-
+  public getCurrentUserRole() {
+    return Number.parseInt(<string>sessionStorage.getItem("userHelper"));
   }
 
+
+  public setSessionStorage(token: string) {
+    // console.log(jwtDecode(token));
+    const decodedToken = jwt_decode(token) as Token;
+    // const decodedToken = jwtDecode(token) as Token;
+    sessionStorage.setItem("token", token);
+    sessionStorage.setItem("userId", decodedToken.user.id);
+    sessionStorage.setItem("userHelper", decodedToken.user.helper);
+    console.log("nach der fehlermeldung2");
+  }
+
+
+
   logout() {
-    this.http.post(`${this.api}/login`, {});
+    this.http.post(`${this.api}/logout`, {});
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('iserId');
+    sessionStorage.removeItem('userId');
     console.log("Logged out");
   }
 
@@ -66,7 +66,6 @@ export class AuthenticationService {
       let expirationDate: Date = new Date(0);
       expirationDate.setUTCSeconds(decodedToken.exp);
       if(expirationDate < new Date()) {
-        console.log("token expired");
         sessionStorage.removeItem("token");
         return false;
       }
@@ -80,4 +79,14 @@ export class AuthenticationService {
     return !this.isLoggedIn();
   }
 
-}
+  public userIsHelper() {
+    if(sessionStorage.getItem("token")) {
+      let token : string = <string> sessionStorage.getItem("token");
+      const decodedToken = jwt_decode(token) as Token;
+      return decodedToken.user.helper === "helper";
+
+    } else {
+      return false;
+    }
+
+}}

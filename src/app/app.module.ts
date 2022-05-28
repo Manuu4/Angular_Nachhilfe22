@@ -8,12 +8,13 @@ import { LessonDetailsComponent } from './lesson-details/lesson-details.componen
 import { NachhilfeService } from './shared/nachhilfe.service';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { SearchComponent } from './search/search.component';
 import { LessonFormComponent } from './lesson-form/lesson-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import {AuthenticationService} from "./shared/authentication.service";
+import {TokenInterceptorService} from "./shared/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,12 @@ import {AuthenticationService} from "./shared/authentication.service";
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule
   ],
-  providers: [NachhilfeService, AuthenticationService],
+  providers: [NachhilfeService, AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

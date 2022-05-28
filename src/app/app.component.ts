@@ -31,6 +31,10 @@ export class AppComponent {
     return this.authService.isLoggedIn();
   }
 
+  userIsHelper() {
+    return this.authService.userIsHelper();
+  }
+
   getLoginLabel(){
     return this.isLoggedIn() ? "Logout" : "Login";
   }
