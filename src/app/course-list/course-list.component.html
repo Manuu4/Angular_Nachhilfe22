@@ -1,0 +1,15 @@
+<div class="ui middle aligned selection divided list">
+  <a *ngFor="let course of courses" class="item bs-course-list-item"
+     [course]="course" [routerLink]="course.id">
+
+  </a>
+
+
+  <div *ngIf="courses && !courses.length" class="ui active dimmer">
+    <div class="ui large text loader">
+      Daten werden geladen!
+    </div>
+
+  </div>
+
+</div>
