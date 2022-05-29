@@ -6,12 +6,16 @@ import {HomeComponent} from "./home/home.component";
 import {LessonFormComponent} from "./lesson-form/lesson-form.component";
 import {LoginComponent} from "./login/login.component";
 import {CanNavigateToAdminGuard} from "./can-navigate-to-admin.guard";
+import {PersonalListComponent} from "./personal-list/personal-list.component";
+
+
 
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'personalarea', component: PersonalListComponent},
   {path: 'lessons', component: LessonListComponent},
   {path: 'lessons/:id', component: LessonDetailsComponent},
   {path: 'admin', component: LessonFormComponent, canActivate: [CanNavigateToAdminGuard]},

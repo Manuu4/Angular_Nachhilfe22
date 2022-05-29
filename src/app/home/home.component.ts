@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Lesson} from "../shared/lesson";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthenticationService} from "../shared/authentication.service";
+import {NachhilfeService} from "../shared/nachhilfe.service";
 
 @Component({
   selector: 'bs-home',
@@ -10,12 +12,20 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+
+  // lessons: Lesson[] = [];
+
+  @Output() showDetailsEvent = new EventEmitter<Lesson>();
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-
   }
 
+  // für Suchfeld benötigt
   lessonSelected(lesson: Lesson){
     this.router.navigate(['../lessons', lesson.id], {relativeTo: this.route});
   }
@@ -37,5 +47,17 @@ export class HomeComponent implements OnInit {
     ];
     return randomText[Math.floor(Math.random() * randomText.length)];
   }
+
+
+  showDetails(lesson : Lesson){
+    this.showDetailsEvent.emit(lesson);
+  }
+
+
+
+
+
+
+
 
 }

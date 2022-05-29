@@ -17,6 +17,7 @@ import {AuthenticationService} from "./shared/authentication.service";
 import {TokenInterceptorService} from "./shared/token-interceptor.service";
 import {ToastrModule} from "ngx-toastr";
 import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
+import { PersonalListComponent } from './personal-list/personal-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
     HomeComponent,
     SearchComponent,
     LessonFormComponent,
-    LoginComponent
+    LoginComponent,
+    PersonalListComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, ToastrModule.forRoot()

@@ -35,8 +35,9 @@ export class AuthenticationService {
 
 
   public getCurrentUserRole() {
-    return Number.parseInt(<string>sessionStorage.getItem("userHelper"));
+    return String(<string>sessionStorage.getItem("userHelper"));
   }
+
 
 
   public setSessionStorage(token: string) {
@@ -88,5 +89,5 @@ export class AuthenticationService {
     } else {
       return false;
     }
-
-}}
+  }
+}

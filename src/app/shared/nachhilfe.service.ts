@@ -63,6 +63,14 @@ export class NachhilfeService {
     return this.http.get<Lesson>(`${this.api}/lessons/search/${searchTerm}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  findLessonsByTakerId(id:string) : Observable<Array<Lesson>> {
+    return this.http.get<Array<Lesson>>(`${this.api}/personalarea/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  // findLessonsByHelperId(id:string) : Observable<Array<Lesson>> {
+  //   return this.http.get<Array<Lesson>>(`${this.api}/personalarea/${id}`, ).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  // }
+
   update(lesson: Lesson) : Observable<any>{
     return this.http.put<Lesson>(`${this.api}/lessons/${lesson.id}`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
@@ -76,7 +84,7 @@ export class NachhilfeService {
   // }
 
   private errorHandler(error: Error | any): Observable<any>{
-    return throwError(() => new Error(error));
+    return throwError(() => new Error(error.message));
   }
 
 }
