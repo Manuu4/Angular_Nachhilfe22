@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Course, Lesson, User} from "./lesson";
 import {catchError, Observable, retry, throwError} from "rxjs";
+import {LessonValidators} from "./lesson-validators";
 
 
 @Injectable({
@@ -69,7 +70,11 @@ export class NachhilfeService {
   create(lesson: Lesson) : Observable<any> {
     return this.http.post<Lesson>(`${this.api}/lessons`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
-  
+
+  // check(title: string) : Observable<Boolean>{
+  //   return this.http.get<Boolean>(`${this.api}/lessons/checktitle/${title}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  // }
+
   private errorHandler(error: Error | any): Observable<any>{
     return throwError(() => new Error(error));
   }

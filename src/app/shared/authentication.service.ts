@@ -46,7 +46,7 @@ export class AuthenticationService {
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("userId", decodedToken.user.id);
     sessionStorage.setItem("userHelper", decodedToken.user.helper);
-    console.log("nach der fehlermeldung2");
+    // console.log("nach der fehlermeldung2");
   }
 
 
@@ -55,13 +55,13 @@ export class AuthenticationService {
     this.http.post(`${this.api}/logout`, {});
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
-    console.log("Logged out");
+    // console.log("Logged out");
   }
 
   public isLoggedIn() {
     if(sessionStorage.getItem("token")) {
       let token : string = <string> sessionStorage.getItem("token");
-      console.log(jwt_decode(token));
+      // console.log(jwt_decode(token));
       const decodedToken = jwt_decode(token) as Token;
       let expirationDate: Date = new Date(0);
       expirationDate.setUTCSeconds(decodedToken.exp);

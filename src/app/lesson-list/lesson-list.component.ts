@@ -17,12 +17,12 @@ export class LessonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.bs.getAll().subscribe(res => this.lessons = res);
-    console.log(this.lessons);
+    // console.log(this.lessons);
 
   }
 
   showDetails(lesson : Lesson){
-    console.log(lesson);
+    // console.log(lesson);
     this.showDetailsEvent.emit(lesson);
   }
 

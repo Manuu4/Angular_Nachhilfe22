@@ -7,6 +7,7 @@ import {LessonFormMessages} from "./lesson-form-messages";
 import { Course } from '../shared/course';
 import {Lesson} from "../shared/lesson";
 import {empty, isEmpty} from "rxjs";
+import {LessonValidators} from "../shared/lesson-validators";
 
 @Component({
   selector: 'bs-lesson-form',
@@ -50,12 +51,20 @@ export class LessonFormComponent implements OnInit {
   initLesson() {
     this.lessonForm = this.fb.group({
       id: this.lesson.id,
-      title: [this.lesson.title, Validators.required],
+      title: [
+        this.lesson.title, Validators.required,
+        // LessonValidators.titleExists(this.bs)
+      ],
       description: this.lesson.description,
       timeslot1: [
-        this.lesson.timeslot1, Validators.required],
+        this.lesson.timeslot1,
+        Validators.required
+      ],
       timeslot2: this.lesson.timeslot2,
-      course: [this.lesson.course, Validators.required],
+      course: [
+        this.lesson.course,
+        Validators.required
+      ],
       course_id: [this.lesson.course_id]
     });
 
@@ -68,7 +77,7 @@ export class LessonFormComponent implements OnInit {
   }
 
   updateErrorMessages() {
-    console.log("Is valid?" + this.lessonForm.invalid);
+    // console.log("Is valid?" + this.lessonForm.invalid);
     this.errors = {};
 
     for (const message of LessonFormMessages) {
