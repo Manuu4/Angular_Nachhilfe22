@@ -18,6 +18,9 @@ import {TokenInterceptorService} from "./shared/token-interceptor.service";
 import {ToastrModule} from "ngx-toastr";
 import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
 import { PersonalListComponent } from './personal-list/personal-list.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import {CourseListComponent} from "./course-list/course-list.component";
+import {CourseListItemComponent} from "./course-list-item/course-list-item.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { PersonalListComponent } from './personal-list/personal-list.component';
     SearchComponent,
     LessonFormComponent,
     LoginComponent,
-    PersonalListComponent
+    PersonalListComponent,
+    CourseDetailsComponent,
+    CourseListComponent,
+    CourseListItemComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, ToastrModule.forRoot()

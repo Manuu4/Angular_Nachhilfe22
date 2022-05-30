@@ -1,6 +1,7 @@
-<div class="ui {{isLoggedIn() && userIsHelper() ? 'five' : 'four'}} item tabs menu">
+<div class="ui {{isLoggedIn() && userIsHelper() ? 'six' : 'five'}} item tabs menu">
   <a routerLink="home" routerLinkActive="active" class="item">Home</a>
   <a routerLink="lessons" routerLinkActive="active" class="item">Angebote</a>
+  <a routerLink="courses" routerLinkActive="active" class="item">Kurse</a>
   <a *ngIf="isLoggedIn() && userIsHelper()" routerLink="admin" routerLinkActive="active" class="item">Neue Einheit</a>
   <a *ngIf="isLoggedIn()" routerLink="personalarea" routerLinkActive="active" class="item">Mein Bereich</a>
   <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>

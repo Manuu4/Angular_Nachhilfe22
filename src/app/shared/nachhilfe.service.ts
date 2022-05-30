@@ -67,6 +67,10 @@ export class NachhilfeService {
     return this.http.get<Array<Lesson>>(`${this.api}/personalarea/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  findLessonsByCourseId(id:string) : Observable<Array<Lesson>> {
+    return this.http.get<Array<Lesson>>(`${this.api}/courses/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   // findLessonsByHelperId(id:string) : Observable<Array<Lesson>> {
   //   return this.http.get<Array<Lesson>>(`${this.api}/personalarea/${id}`, ).pipe(retry(3)).pipe(catchError(this.errorHandler));
   // }

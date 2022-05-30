@@ -7,6 +7,8 @@ import {LessonFormComponent} from "./lesson-form/lesson-form.component";
 import {LoginComponent} from "./login/login.component";
 import {CanNavigateToAdminGuard} from "./can-navigate-to-admin.guard";
 import {PersonalListComponent} from "./personal-list/personal-list.component";
+import {CourseListComponent} from "./course-list/course-list.component";
+import {CourseDetailsComponent} from "./course-details/course-details.component";
 
 
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'personalarea', component: PersonalListComponent},
   {path: 'lessons', component: LessonListComponent},
   {path: 'lessons/:id', component: LessonDetailsComponent},
+  {path: 'courses', component: CourseListComponent},
+  {path: 'courses/:id', component: CourseDetailsComponent},
   {path: 'admin', component: LessonFormComponent, canActivate: [CanNavigateToAdminGuard]},
   {path: 'admin/:id', component: LessonFormComponent, canActivate: [CanNavigateToAdminGuard]},
   {path: 'login', component: LoginComponent},

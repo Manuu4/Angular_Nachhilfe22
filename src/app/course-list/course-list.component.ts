@@ -6,13 +6,12 @@ import {NachhilfeService} from "../shared/nachhilfe.service";
   selector: 'bs-course-list',
   templateUrl: './course-list.component.html',
   styles: [
-  ]
-})
+  ]})
 export class CourseListComponent implements OnInit {
 
   courses : Course[] = [];
 
-  @Output() showDetailsEvent = new EventEmitter<Lesson>();
+  @Output() showDetailsEvent = new EventEmitter<Course>();
 
   constructor(private bs: NachhilfeService) { }
 
@@ -22,9 +21,9 @@ export class CourseListComponent implements OnInit {
 
   }
 
-  showDetails(lesson : Lesson){
-    // console.log(lesson);
-    this.showDetailsEvent.emit(lesson);
+  showDetails(course : Course){
+    // console.log(course);
+    this.showDetailsEvent.emit(course);
   }
 
 }
