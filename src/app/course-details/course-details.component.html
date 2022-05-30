@@ -1,6 +1,6 @@
 <div class="ui middle aligned selection divided list">
   <a *ngFor="let lesson of lessons" class="item bs-lesson-list-item"
-     [lesson]="lesson" [routerLink]="[lesson.id]">
+     [lesson]="lesson" [routerLink]="['../../lessons/' + lesson.id]">
 
   </a>
 

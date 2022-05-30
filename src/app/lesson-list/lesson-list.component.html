@@ -1,5 +1,11 @@
-<div class="ui middle aligned selection divided list">
-  <a *ngFor="let lesson of lessons" class="item bs-lesson-list-item"
+<br>
+<div class="ui container text center aligned">
+  <h1>Alle Nachhilfe-Angebote</h1>
+  <br>
+</div>
+
+<div class="ui selection list grid container text">
+  <a *ngFor="let lesson of lessons" class="ui item bs-lesson-list-item"
      [lesson]="lesson" [routerLink]="lesson.id">
 
   </a>
@@ -12,3 +18,4 @@
   </div>
 
 </div>
+

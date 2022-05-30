@@ -1,3 +1,12 @@
+<br>
+<div class="ui grid middle aligned">
+  <div class="row">
+    <div class="column ">
+      <div class="ui text container inverted grey segment center aligned">
+
+
+
+
 <div *ngIf="!isLoggedIn()">
   <h1>Login</h1>
 
@@ -32,10 +41,15 @@
         Passwort ist verpflichtend!
       </div>
     </div>
-    <button type="submit" class="ui button" [disabled]="loginForm.invalid">Login</button>
+    <button type="submit" class="ui button olive" [disabled]="loginForm.invalid">Login</button>
   </form>
 </div>
 
 <div *ngIf="isLoggedIn()">
-  <button type="button" class="ui button" (click)="logout()">Logout</button>
+  <button type="button" class="ui button olive" (click)="logout()">Logout</button>
+</div>
+
+</div>
+</div>
+</div>
 </div>

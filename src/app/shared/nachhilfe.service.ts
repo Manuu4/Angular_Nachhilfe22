@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {Course, Lesson, User} from "./lesson";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {LessonValidators} from "./lesson-validators";
+import {Proposal} from "./proposal";
 
 
 @Injectable({
@@ -81,6 +82,10 @@ export class NachhilfeService {
 
   create(lesson: Lesson) : Observable<any> {
     return this.http.post<Lesson>(`${this.api}/lessons`, lesson).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  saveProposal(proposal: Proposal) : Observable<any> {
+    return this.http.post<Proposal>(`${this.api}/lesson`, proposal).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
   // check(title: string) : Observable<Boolean>{

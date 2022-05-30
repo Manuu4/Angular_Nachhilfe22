@@ -5,6 +5,10 @@ import {NachhilfeService} from "../shared/nachhilfe.service";
 import {Subject} from "rxjs";
 import {LessonFactory} from "../shared/lesson-factory";
 import {AuthenticationService} from "../shared/authentication.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProposalFactory} from "../shared/proposal-factory";
+import {LessonFormMessages} from "../lesson-form/lesson-form-messages";
+import {Proposal} from "../shared/proposal";
 
 
 @Component({
@@ -15,28 +19,78 @@ import {AuthenticationService} from "../shared/authentication.service";
 })
 export class LessonDetailsComponent implements OnInit {
 
-  // @Input() lesson: Lesson | undefined;
-  // @Output() showListEvent = new EventEmitter<any>();
-
+  proposalForm: FormGroup;
+  proposal = ProposalFactory.empty();
+  errors: { [key: string]: string } = {};
   lesson : Lesson = LessonFactory.empty();
 
   constructor(
+
+    private fb: FormBuilder,
     private bs: NachhilfeService,
     private route: ActivatedRoute,
     private router: Router,
     public authService: AuthenticationService
-  ) { }
+  ) {
+    this.proposalForm = this.fb.group({});
+  }
 
   ngOnInit(): void {
     const params = this.route.snapshot.params;
     this.bs.getSingle(params['id']).subscribe(l => this.lesson = l);
     //console.log("Wenn dich meine Antworten erschrecken, dann solltest du aufhören, erschreckende Fragen zu stellen.");
+    this.initProposal();
+
   }
 
-  // Beispiel aus IVL für Bücher; Keine Verwendung hier:
-  //    getRating(num: number){
-  //      return new Array(num);
-  //    }
+  initProposal() {
+    this.proposalForm = this.fb.group({
+      id: this.proposal.id,
+      time: this.proposal.time,
+      message: this.proposal.message,
+    });
+
+    this.proposalForm.statusChanges.subscribe(() =>
+      this.updateErrorMessages())
+  }
+
+  updateErrorMessages() {
+    // console.log("Is valid?" + this.lessonForm.invalid);
+    this.errors = {};
+
+    for (const message of LessonFormMessages) {
+      const control = this.proposalForm.get(message.forControl);
+      if (
+        control &&
+        control.dirty &&
+        control.invalid &&
+        control.errors &&
+        !this.errors[message.forControl]
+      ) {
+        this.errors[message.forControl] = message.text;
+      }
+    }
+    if(this.errors) console.log(this.errors);
+  }
+
+
+  submitForm() {
+    const proposal: Proposal = ProposalFactory.fromObject(this.proposalForm.value);
+    // lesson.course = this.lesson.course;
+
+    proposal.user_id = this.authService.getCurrentUserId();
+
+      this.bs.saveProposal(proposal).subscribe(res => {
+        this.proposal = ProposalFactory.empty();
+
+        // form wieder leeren (um neue erstellen zu können)
+        this.proposalForm.reset(LessonFactory.empty());
+      });
+    }
+
+
+
+
 
   removeLesson(){
     if (confirm("Einheit wirklich entfernen?")){

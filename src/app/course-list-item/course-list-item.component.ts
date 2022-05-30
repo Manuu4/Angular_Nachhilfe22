@@ -16,10 +16,3 @@ export class CourseListItemComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-
-
