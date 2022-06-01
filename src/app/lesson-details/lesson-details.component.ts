@@ -77,5 +77,10 @@ export class LessonDetailsComponent implements OnInit {
   userIsHelper() {
     return this.authService.userIsHelper();
   }
+
+  userIsCreator() {
+    return this.lesson.user_id == this.authService.getCurrentUserId();
+  }
+
 }
 

@@ -1,7 +1,15 @@
+<br>
+<div class="ui container text center aligned">
+  <h1>Mein Bereich</h1>
+  <br>
+</div>
 <div *ngIf="userIsHelper()">
-  <h3>Warten auf Antwort</h3>
+  <div class="ui container text center aligned">
+    <h3>Warten auf Antwort</h3>
+    <br>
+  </div>
 
-  <div class="ui middle aligned selection divided list">
+  <div class="ui selection list grid container text">
 
     <div *ngFor="let proposal of proposals" class="item bs-proposal-list-item" [proposal]="proposal">
     </div>
@@ -9,19 +17,23 @@
   </div>
 </div>
 <div *ngIf="!userIsHelper()">
+  <div class="ui container text center aligned">
   <h3>Versendete Anfragen</h3>
+    <br></div>
 
-  <div class="ui middle aligned selection divided list">
+  <div class="ui selection list grid container text">
 
     <div *ngFor="let proposal of proposalsSent" class="item bs-proposal-list-item" [proposal]="proposal">
     </div>
 
   </div>
 </div>
+<br><br>
+<div class="ui container text center aligned">
+<h3>Meine Einheiten</h3>
+  <br></div>
 
-<h3>Alle Einheiten</h3>
-
-<div class="ui middle aligned selection divided list">
+<div class="ui selection list grid container text">
 
 
   <a *ngFor="let lesson of lessons" class="item bs-lesson-list-item"
@@ -29,13 +41,7 @@
 
   </a>
 </div>
+<br><br>
 
-
-<!--<div *ngIf="lessons && !lessons.length" class="ui active dimmer">-->
-<!--  <div class="ui large text loader">-->
-<!--    Daten werden geladen!-->
-<!--  </div>-->
-
-<!--</div>-->
 
 

@@ -2,14 +2,14 @@
 <div class="ui grid middle aligned">
   <div class="row">
     <div class="column ">
-      <div class="ui text container inverted grey segment center aligned">
+      <div class="ui text container center aligned">
 
 
 
 
 <div *ngIf="!isLoggedIn()">
   <h1>Login</h1>
-
+  <br>
   <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="field">
       <label>E-Mail</label>
@@ -46,6 +46,8 @@
 </div>
 
 <div *ngIf="isLoggedIn()">
+  <h1>Logout</h1>
+  <p>Frohes Schaffen und viel Erfolg!</p>
   <button type="button" class="ui button olive" (click)="logout()">Logout</button>
 </div>
 

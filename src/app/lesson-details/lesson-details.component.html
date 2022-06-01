@@ -1,87 +1,86 @@
-<div class="ui grid" *ngIf="lesson">
-  <div class="twelve wide column">
-    <h1 class="ui header">{{lesson.title}}</h1>
-    <h3 class="ui header">{{lesson.course.name}}</h3>
+<br><br>
+<div class="ui selection list grid container text" *ngIf="lesson" style="width: 700px">
+  <div>
+
+      <h1 class="ui header" style="text-align: center">{{lesson.title}}</h1>
+      <p class="ui label">{{lesson.course.name}}</p>
+
+    <br><br>
+    <div class="description">
+      {{ lesson.description }}
+    </div>
+    <br>
+    <div class="extra">
+      <span>Angeboten von {{ lesson.user.firstname }} {{ lesson.user.lastname }} </span>
+    </div>
+    <br>
+    <div class="four wide column">
+      <h4 class="ui header">Status: {{lesson.status}}</h4>
+    </div>
     <div class="ui divider"></div>
-    <div class="ui grid">
+
+    <div *ngIf="lesson.truetimeslot == null && !userIsHelper()">
+      <h3>Buche einen Termin mit einem Klick!</h3>
+      <button class="ui button olive"
+              (click)="bookThisTime(lesson.timeslot1, lesson.id)">{{ lesson.timeslot1 }}</button>
+      <button class="ui button olive"
+              (click)="bookThisTime(lesson.timeslot2, lesson.id)">{{ lesson.timeslot2 }}</button>
+
+      <div class="ui divider"></div>
+      <h3>Buche einen Alternativtermin!</h3>
+
+      <form class="ui  form">
+
+        <div class="field">
+          <label>Nachricht</label>
+          <textarea id="description" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Alternativtermin</label>
+          <input id="alternativtermin" type="datetime-local" value="YYYY-MM-DD HH:mm:ss"/>
+        </div>
+
+        <button (click)="submitF()" class="ui button">Anfrage senden</button>
+
+      </form>
+    </div>
+
+
+    <div *ngIf="lesson.truetimeslot == null && userIsHelper()">
       <div class="four wide column">
-        <h4 class="ui header">Dein*e Helfer*in</h4>
-        <!-- <span>{{ lesson.user_id }} </span>  OLD-->
-        <span>{{ lesson.user.firstname }} {{ lesson.user.lastname }} </span> <!-- NEW -->
-      </div>
-      <div *ngIf="lesson.truetimeslot == null && !userIsHelper()">
-        <div class="four wide column">
-          <h4 class="ui header">Termin 1</h4>
-          <button (click)="bookThisTime(lesson.timeslot1, lesson.id)">{{ lesson.timeslot1 }}</button>
-        </div>
-        <div class="four wide column">
-          <h4 class="ui header">Termin 2</h4>
-          <button (click)="bookThisTime(lesson.timeslot2, lesson.id)">{{ lesson.timeslot2 }}</button>
-        </div>
-
-
-        <form class="ui large form">
-
-          <div class="field">
-            <label>Nachricht</label>
-            <textarea id="description" rows="3"></textarea>
-          </div>
-
-          <div class="field">
-            <label>Alternativtermin</label>
-            <input id="alternativtermin" type="datetime-local" value="YYYY-MM-DD HH:mm:ss"/>
-          </div>
-
-          <button (click)="submitF()" class="ui button">Anfrage senden</button>
-
-        </form>
-
-
-
-
-      </div>
-      <div *ngIf="lesson.truetimeslot == null && userIsHelper()">
-        <div class="four wide column">
-          <h4 class="ui header">Termin 1</h4>
-          <p>{{ lesson.timeslot1 }}</p>
-        </div>
-        <div class="four wide column">
-          <h4 class="ui header">Termin 2</h4>
-          <p>{{ lesson.timeslot2 }}</p>
-        </div>
-      </div>
-      <div *ngIf="lesson.truetimeslot != null">
-        <div class="four wide column">
-          <h4 class="ui header">Anstehender Termin</h4>
-          <p>{{ lesson.truetimeslot }}</p>
-        </div>
+        <p>Termin 1: {{ lesson.timeslot1 }}</p>
       </div>
       <div class="four wide column">
-        <h4 class="ui header">Status: {{lesson.status}}</h4>
+
+        <p>Termin 2: {{ lesson.timeslot2 }}</p>
       </div>
     </div>
-  </div>
-  <div class="sixteen wide column">
-    <h3 class="ui header">Beschreibung</h3>
-    {{ lesson.description }}
-  </div>
-  <div class="ui" *ngIf="lesson?.status">
-    <i class="green ellipsis icon"></i>
+    <div *ngIf="lesson.truetimeslot != null">
+      <div class="four wide column">
+        <p>Anstehender Termin: {{ lesson.truetimeslot }}</p>
+      </div>
+    </div>
+
   </div>
 </div>
+<br><br>
+<div class="ui container">
+  <a *ngIf="authService.isLoggedIn() && authService.userIsHelper() && userIsCreator()"
+     class="ui tiny yellow labeled icon button"
+     [routerLink]="['../../admin', lesson?.id]">
+    <i class="write icon"></i> Einheit bearbeiten
+  </a>
+  <br><br>
+  <button *ngIf="authService.isLoggedIn() && authService.userIsHelper() && userIsCreator()" class="ui red button"
+          (click)="removeLesson()">
+    <i class="remove icon"></i>
+    Einheit entfernen
+  </button>
+</div>
+<div>
+  <button [routerLink]="'/lessons'" class="container ui grey button" style="width: 700px">Zu allen Angeboten</button>
+  <br><br></div>
 
-
-<a *ngIf="authService.isLoggedIn() && authService.userIsHelper()" class="ui tiny yellow labeled icon button"
-   [routerLink]="['../../admin', lesson?.id]">
-  <i class="write icon"></i> Einheit bearbeiten
-</a>
-
-<button *ngIf="authService.isLoggedIn() && authService.userIsHelper()" class="ui red button" (click)="removeLesson()">
-  <i class="remove icon"></i>
-  Einheit entfernen
-</button>
-
-<hr/>
-<button [routerLink]="'/lessons'" class="ui red button">Zu allen Angeboten</button>
 
 

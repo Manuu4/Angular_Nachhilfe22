@@ -1,11 +1,24 @@
-<div class="ui {{isLoggedIn() && userIsHelper() ? 'six' : 'five'}} item tabs menu">
-  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
-  <a routerLink="lessons" routerLinkActive="active" class="item">Angebote</a>
-  <a routerLink="courses" routerLinkActive="active" class="item">Kurse</a>
-  <a *ngIf="isLoggedIn() && userIsHelper()" routerLink="admin" routerLinkActive="active" class="item">Neue Einheit</a>
-  <a *ngIf="isLoggedIn()" routerLink="personalarea" routerLinkActive="active" class="item">Mein Bereich</a>
-  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+<div class="container ui inverted segment">
+  <div class="ui secondary inverted  {{isLoggedIn() && userIsHelper() ? 'six' : 'five'}} menu">
+  <a routerLink="home" routerLinkActive="active" class="item olive ">Home</a>
+  <a routerLink="lessons" routerLinkActive="active" class="item olive ">Angebote</a>
+  <a routerLink="courses" routerLinkActive="active" class="item olive ">Kurse</a>
+  <a *ngIf="isLoggedIn() && userIsHelper()" routerLink="admin" routerLinkActive="active" class="item olive ">Neue Einheit</a>
+  <a *ngIf="isLoggedIn()" routerLink="personalarea" routerLinkActive="active" class="item olive ">Mein Bereich</a>
+  <div class="right menu">
+    <div class="ui category search item">
+      <div class="ui transparent icon input">
+        <p>
+          <bs-search class="column item" (lessonSelected)="lessonSelected($event)"></bs-search>
+        </p>
+      </div>
+      <div class="results"></div>
+    </div>
+    <a routerLink="login" routerLinkActive="active" class="item olive ">{{getLoginLabel()}}</a>
+  </div>
 </div>
+</div>
+
 <router-outlet></router-outlet>
 
 <!--<div class="ui active inverted dimmer">-->

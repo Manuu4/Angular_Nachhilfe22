@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Lesson} from "./shared/lesson";
 import {AuthenticationService} from "./shared/authentication.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'bs-root',
@@ -13,7 +14,13 @@ export class AppComponent {
   listOn = true;
   detailsOn = false;
 
-  constructor(private authService: AuthenticationService) {
+  @Output() showDetailsEvent = new EventEmitter<Lesson>();
+
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
   }
 
   // showList(){
@@ -37,6 +44,15 @@ export class AppComponent {
 
   getLoginLabel(){
     return this.isLoggedIn() ? "Logout" : "Login";
+  }
+
+  // für Suchfeld benötigt
+  lessonSelected(lesson: Lesson){
+    this.router.navigate(['../lessons', lesson.id], {relativeTo: this.route});
+  }
+
+  showDetails(lesson : Lesson){
+    this.showDetailsEvent.emit(lesson);
   }
 
   title = 'nachhilfe22';

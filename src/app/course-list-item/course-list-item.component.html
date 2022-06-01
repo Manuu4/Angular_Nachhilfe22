@@ -1,5 +1,11 @@
-<div class="content">
-  <div class="header">{{course?.name}}</div>
-  <div class="description">{{course?.description}}</div>
-  <div class="extra">{{course?.semester}}</div>
+<div class="ui items segment olive" style="width: 700px;">
+  <div class="item">
+    <div class="content" style="text-align: left!important">
+      <p class="header">{{course?.name}}</p><a class="ui label right floated">Semester {{course?.semester}}</a>
+      <br><br>
+      <div class="description">
+        <span class="left aligned">{{course?.description}}</span>
+      </div>
+    </div>
+  </div>
 </div>

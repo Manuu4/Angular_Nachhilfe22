@@ -1,42 +1,21 @@
-<div class="ui grid middle aligned">
-  <div class="row">
-    <div class="column">
-      <div class="ui text container segment grey inverted">
-        <div class="content">
-            <h5>{{lesson?.course?.name}}</h5>
-          <br>
-          <div class="ui container">
-          <h3 class="header">{{lesson?.title}}</h3>
-          <br>
-          <p class="description">Anbieter*in: <br><b>{{lesson?.user?.firstname}} {{lesson?.user?.lastname}}</b></p>
-          <p class="description">{{lesson?.description}}</p>
+<div class="ui items segment olive" style="width: 700px;">
+  <div class="item">
+    <div class="content">
+        <p class="header">{{lesson?.title}}</p><a class="ui label right floated">{{lesson?.course?.name}}</a>
+        <div class="meta">
+          Angebot von {{lesson?.user?.firstname}} {{lesson?.user?.lastname}}
         </div>
-          <br>
-          <div *ngIf="lesson?.truetimeslot == null">
-            <div class="ui container inline">
-              <p>Termin 1:<br><b>{{lesson?.timeslot1}}</b></p>
-            </div>
-            <div class="ui container inline">
-              <p>Termin 2:<br><b>{{lesson?.timeslot2}}</b></p>
-            </div>
-          </div>
-          <div *ngIf="lesson?.truetimeslot != null">
-            <div class="ui container inline">
-              <p>Termin 2:<br><b>{{ lesson?.truetimeslot }}</b></p>
-            </div>
-          </div>
-          <div>
-            <div class="ui container inline">
-              <p>Status:<br><b>{{ lesson?.status }}</b></p>
-          </div>
-          <br>
+        <div class="description">
+          <span>{{lesson?.description}}</span>
+        </div>
+        <div *ngIf="lesson?.truetimeslot == null" class="meta right floated">
+          <p><b>Termin 1:</b> {{lesson?.timeslot1}}</p>
+          <p><b>Termin 2:</b> {{lesson?.timeslot2}}</p>
+        </div>
+        <div *ngIf="lesson?.truetimeslot != null" class="meta right floated">
+          <p><b>Vereinbarter Termin:</b> {{lesson?.truetimeslot}}</p>
         </div>
       </div>
-    </div>
   </div>
 </div>
-
-
-
-
 

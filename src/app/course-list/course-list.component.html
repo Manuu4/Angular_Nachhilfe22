@@ -3,8 +3,8 @@
   <h1>Alle Kurse</h1>
   <br>
 
-  <div class="ui selection animated list">
-    <a *ngFor="let course of courses" class="ui text segment olive item bs-course-list-item"
+  <div class="ui selection list grid container text">
+    <a *ngFor=" let course of courses" class="ui item bs-course-list-item"
        [course]="course" [routerLink]="course.id">
 
     </a>

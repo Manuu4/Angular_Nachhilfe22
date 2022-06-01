@@ -1,6 +1,11 @@
-<div class="ui middle aligned selection divided list">
-  <a *ngFor="let lesson of lessons" class="item bs-lesson-list-item"
-     [lesson]="lesson" [routerLink]="['../../lessons/' + lesson.id]">
+<br>
+<div class="ui container text center aligned">
+  <h1 style="color: black;">Alle Angebote zu diesem Kurs</h1>
+  <br>
+</div>
+
+<div class="ui selection list grid container text">
+  <a *ngFor="let lesson of lessons" class="item bs-lesson-list-item" [lesson]="lesson" [routerLink]="['../../lessons/' + lesson.id]">
 
   </a>
 

@@ -11,7 +11,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class CourseDetailsComponent implements OnInit {
 
   lessons : Lesson[] = [];
-
   @Output() showDetailsEvent = new EventEmitter<Lesson>();
 
   constructor(
@@ -26,6 +25,7 @@ export class CourseDetailsComponent implements OnInit {
     this.bs.findLessonsByCourseId(params['id']).subscribe(res => this.lessons = res);
     console.log(this.lessons);
     console.log(params['id']);
+
 
 
 
