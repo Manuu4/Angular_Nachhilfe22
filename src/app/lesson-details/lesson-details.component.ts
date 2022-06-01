@@ -51,14 +51,14 @@ export class LessonDetailsComponent implements OnInit {
     const valueMessage = inputMessage?.value;
 
     const inputTermin = document.getElementById('alternativtermin') as HTMLInputElement | null;
-    const valueTermin = inputTermin?.value;
-    // valueTermin = valueTermin.toString();
+    // const valueTermin = inputTermin?.value | Date;
+    // console.log(valueTermin);
 
 
     this.proposal.message = valueMessage;
     this.proposal.user_id = this.authService.getCurrentUserId();
     this.proposal.lesson_id = this.lesson.id;
-    // this.proposal.time = valueTermin;
+    this.proposal.time = new Date();
     this.bs.saveProposal(this.proposal).subscribe();
 
     console.log(this.proposal);
