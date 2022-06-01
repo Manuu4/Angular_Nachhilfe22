@@ -1,17 +1,41 @@
+<div *ngIf="userIsHelper()">
+  <h3>Warten auf Antwort</h3>
 
+  <div class="ui middle aligned selection divided list">
+
+    <div *ngFor="let proposal of proposals" class="item bs-proposal-list-item" [proposal]="proposal">
+    </div>
+
+  </div>
+</div>
+<div *ngIf="!userIsHelper()">
+  <h3>Versendete Anfragen</h3>
+
+  <div class="ui middle aligned selection divided list">
+
+    <div *ngFor="let proposal of proposalsSent" class="item bs-proposal-list-item" [proposal]="proposal">
+    </div>
+
+  </div>
+</div>
+
+<h3>Alle Einheiten</h3>
 
 <div class="ui middle aligned selection divided list">
+
+
   <a *ngFor="let lesson of lessons" class="item bs-lesson-list-item"
      [lesson]="lesson" [routerLink]="['../lessons/' + lesson.id]">
 
   </a>
+</div>
 
 
-<!--  <div *ngIf="lessons && !lessons.length" class="ui active dimmer">-->
-<!--    <div class="ui large text loader">-->
-<!--      Daten werden geladen!-->
-<!--    </div>-->
-
+<!--<div *ngIf="lessons && !lessons.length" class="ui active dimmer">-->
+<!--  <div class="ui large text loader">-->
+<!--    Daten werden geladen!-->
 <!--  </div>-->
 
-</div>
+<!--</div>-->
+
+

@@ -12,12 +12,22 @@
           <p class="description">{{lesson?.description}}</p>
         </div>
           <br>
-          <div class="ui container inline">
-            <p>Termin 1:<br><b>{{lesson?.timeslot1}}</b></p>
+          <div *ngIf="lesson?.truetimeslot == null">
+            <div class="ui container inline">
+              <p>Termin 1:<br><b>{{lesson?.timeslot1}}</b></p>
+            </div>
+            <div class="ui container inline">
+              <p>Termin 2:<br><b>{{lesson?.timeslot2}}</b></p>
+            </div>
           </div>
-
-          <div class="ui container inline">
-            <p>Termin 2:<br><b>{{lesson?.timeslot2}}</b></p>
+          <div *ngIf="lesson?.truetimeslot != null">
+            <div class="ui container inline">
+              <p>Termin 2:<br><b>{{ lesson?.truetimeslot }}</b></p>
+            </div>
+          </div>
+          <div>
+            <div class="ui container inline">
+              <p>Status:<br><b>{{ lesson?.status }}</b></p>
           </div>
           <br>
         </div>

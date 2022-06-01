@@ -12,18 +12,21 @@ export class ProposalFactory {
       new User('','', '', '', "student", ''),
       0,
       new Lesson('0', '', '', '','verfügbar', new User('','', '', '', "helper", ''), 0, new Course('0','', '', ''), '0', new Date(), new Date()),
-      ''
+      '',
+      ""
     );
     }
 
   static fromObject(rawProposal: any): Proposal {
     return new Proposal(
       rawProposal.id,
-      rawProposal.message,
-      rawProposal.time,
+      new Date(rawProposal.time),
       rawProposal.status,
       rawProposal.user,
       rawProposal.user_id,
+      rawProposal.lesson,
+      rawProposal.lesson_id,
+      rawProposal.message,
     );
 
   }

@@ -12,6 +12,7 @@ export class Proposal {
     public user: User,
     public user_id: number,
     public lesson: Lesson,
+    public lesson_id: string,
     public message?: string
   ) {
   }

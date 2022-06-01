@@ -21,6 +21,7 @@ import { PersonalListComponent } from './personal-list/personal-list.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import {CourseListComponent} from "./course-list/course-list.component";
 import {CourseListItemComponent} from "./course-list-item/course-list-item.component";
+import { ProposalListItemComponent } from './proposal-list-item/proposal-list-item.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {CourseListItemComponent} from "./course-list-item/course-list-item.compo
     PersonalListComponent,
     CourseDetailsComponent,
     CourseListComponent,
-    CourseListItemComponent
+    CourseListItemComponent,
+    ProposalListItemComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, ToastrModule.forRoot()

@@ -72,6 +72,16 @@ export class NachhilfeService {
     return this.http.get<Array<Lesson>>(`${this.api}/courses/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  //proposal wird für Lesson und dazugehörigen Urheber ausgegeben
+  findProposalByLessonId(id:string) : Observable<Array<Proposal>> {
+    return this.http.get<Array<Proposal>>(`${this.api}/personalarea/lesson/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  //proposal wird für Lesson und dazugehörigen Urheber ausgegeben
+  findProposalByUserId(id:string) : Observable<Array<Proposal>> {
+    return this.http.get<Array<Proposal>>(`${this.api}/personalarea/user/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   // findLessonsByHelperId(id:string) : Observable<Array<Lesson>> {
   //   return this.http.get<Array<Lesson>>(`${this.api}/personalarea/${id}`, ).pipe(retry(3)).pipe(catchError(this.errorHandler));
   // }
@@ -85,7 +95,15 @@ export class NachhilfeService {
   }
 
   saveProposal(proposal: Proposal) : Observable<any> {
-    return this.http.post<Proposal>(`${this.api}/lesson`, proposal).pipe(retry(3)).pipe(catchError(this.errorHandler));
+    return this.http.post<Proposal>(`${this.api}/proposals`, proposal).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  deleteProposal(id: string): Observable<any>{
+    return this.http.delete(`${this.api}/proposals/${id}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  updateProposal(proposal: Proposal) : Observable<any>{
+    return this.http.put<Proposal>(`${this.api}/proposals/${proposal.id}`, proposal).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
   // check(title: string) : Observable<Boolean>{

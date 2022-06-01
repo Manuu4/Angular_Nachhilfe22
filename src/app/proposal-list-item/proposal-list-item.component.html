@@ -1,0 +1,30 @@
+<!--<div class="ui grid middle aligned">-->
+<div *ngIf="userIsHelper() && proposal?.status == 'unbeantwortet' || !userIsHelper()" class="ui grid middle aligned">
+  <div class="row">
+    <div class="column">
+      <div class="ui text container segment grey inverted">
+        <div class="content">
+          <h5>{{proposal?.time}}</h5>
+          <br>
+          <div class="ui container">
+            <h3 class="header">{{proposal?.lesson?.title}}</h3>
+            <p>{{proposal?.message}}</p>
+            <br>
+            <p class="description">Student: <br><b>{{proposal?.user?.firstname}} {{proposal?.user?.lastname}}</b></p>
+            <p class="description">{{proposal?.status}}</p>
+          </div>
+          <div *ngIf="userIsHelper()">
+            <button (click)="acceptLesson(proposal?.time, proposal?.user_id, proposal?.lesson?.id, proposal?.id)">Annehmen</button>
+            <button (click)="denieLesson(proposal?.lesson?.id)">Ablehnen</button>
+          </div>
+          <div *ngIf="!userIsHelper()">
+            <button (click)="removeProposal(proposal?.id)">Löschen</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Change all data to what you should see!  -->

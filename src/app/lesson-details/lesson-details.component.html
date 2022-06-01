@@ -9,7 +9,38 @@
         <!-- <span>{{ lesson.user_id }} </span>  OLD-->
         <span>{{ lesson.user.firstname }} {{ lesson.user.lastname }} </span> <!-- NEW -->
       </div>
-      <div>
+      <div *ngIf="lesson.truetimeslot == null && !userIsHelper()">
+        <div class="four wide column">
+          <h4 class="ui header">Termin 1</h4>
+          <button (click)="bookThisTime(lesson.timeslot1, lesson.id)">{{ lesson.timeslot1 }}</button>
+        </div>
+        <div class="four wide column">
+          <h4 class="ui header">Termin 2</h4>
+          <button (click)="bookThisTime(lesson.timeslot2, lesson.id)">{{ lesson.timeslot2 }}</button>
+        </div>
+
+
+        <form class="ui large form">
+
+          <div class="field">
+            <label>Nachricht</label>
+            <textarea id="description" rows="3"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Alternativtermin</label>
+            <input id="alternativtermin" type="datetime-local" value="YYYY-MM-DD HH:mm:ss"/>
+          </div>
+
+          <button (click)="submitF()" class="ui button">Anfrage senden</button>
+
+        </form>
+
+
+
+
+      </div>
+      <div *ngIf="lesson.truetimeslot == null && userIsHelper()">
         <div class="four wide column">
           <h4 class="ui header">Termin 1</h4>
           <p>{{ lesson.timeslot1 }}</p>
@@ -17,6 +48,12 @@
         <div class="four wide column">
           <h4 class="ui header">Termin 2</h4>
           <p>{{ lesson.timeslot2 }}</p>
+        </div>
+      </div>
+      <div *ngIf="lesson.truetimeslot != null">
+        <div class="four wide column">
+          <h4 class="ui header">Anstehender Termin</h4>
+          <p>{{ lesson.truetimeslot }}</p>
         </div>
       </div>
       <div class="four wide column">
@@ -48,50 +85,3 @@
 <button [routerLink]="'/lessons'" class="ui red button">Zu allen Angeboten</button>
 
 
-<h3>Anfrageformular</h3>
-
-<form class="ui large form" [formGroup]="proposalForm" (ngSubmit)="submitForm()">
-
-  <!--  <input type="hidden" formControlName="id">-->
-
-  <div class="field">
-    <label>Terminwahl</label>
-    <fieldset>
-      <div>
-        <input id="time1" type="radio" value="{{this.lesson.timeslot1}}" name="time1">
-        <label for="time1">Termin 1</label>
-      </div>
-      <div>
-        <input id="time2" type="radio" value="{{this.lesson.timeslot2}}" name="time2">
-        <label for="time2">Termin 2</label>
-      </div>
-      <div>
-        <input id="time3" type="radio" value="{{this.lesson.timeslot2}}" name="time3">
-        <label for="time3">Terminvorschlag</label>
-      </div>
-      <div *ngIf="errors['time']" class="ui negative message">
-        {{errors['time']}}
-      </div>
-    </fieldset>
-  </div>
-
-  <div class="field">
-    <label>Terminvorschlag</label>
-    <input type="DateTime" formControlName="time"/>
-    <div *ngIf="errors['time']" class="ui negative message">
-      {{ errors['time']}}
-    </div>
-  </div>
-
-  <div class="field">
-    <label>Nachricht</label>
-    <textarea formControlName="message" rows="3"></textarea>
-    <div *ngIf="errors['message']" class="ui negative message">{{ errors['message']}}</div>
-  </div>
-
-  <!--  <input type="hidden" formControlName="user">-->
-
-  <button type="submit" class="ui button" [disabled]="proposalForm.invalid">Anfragen</button>
-
-
-</form>
