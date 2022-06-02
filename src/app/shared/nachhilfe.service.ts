@@ -114,4 +114,9 @@ export class NachhilfeService {
     return throwError(() => new Error(error.message));
   }
 
+  findByStatus(status: string): Observable<Array<Lesson>>{
+    return this.http.get<Array<Lesson>>(`${this.api}/lessons/status/${status}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+
 }

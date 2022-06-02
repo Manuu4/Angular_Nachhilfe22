@@ -22,11 +22,10 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     const params = this.route.snapshot.params;
-    this.bs.findLessonsByCourseId(params['id']).subscribe(res => this.lessons = res);
+    this.bs.findLessonsByCourseId(params['id']).subscribe(res => {this.lessons = res;
+      this.lessons = this.lessons.filter((lesson)=> {return lesson.status === 'verfügbar'});});
     console.log(this.lessons);
     console.log(params['id']);
-
-
 
 
   }
