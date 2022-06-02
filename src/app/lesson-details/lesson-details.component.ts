@@ -82,5 +82,9 @@ export class LessonDetailsComponent implements OnInit {
     return this.lesson.user_id == this.authService.getCurrentUserId();
   }
 
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
 }
 

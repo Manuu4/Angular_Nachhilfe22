@@ -19,7 +19,7 @@
     </div>
     <div class="ui divider"></div>
 
-    <div *ngIf="lesson.truetimeslot == null && !userIsHelper()">
+    <div *ngIf="lesson.truetimeslot == null && !userIsHelper() && isLoggedIn()">
       <h3>Buche einen Termin mit einem Klick!</h3>
       <button class="ui button olive"
               (click)="bookThisTime(lesson.timeslot1, lesson.id)">{{ lesson.timeslot1 }}</button>
@@ -47,7 +47,7 @@
     </div>
 
 
-    <div *ngIf="lesson.truetimeslot == null && userIsHelper()">
+    <div *ngIf="lesson.truetimeslot == null && userIsHelper() || !isLoggedIn()">
       <div class="four wide column">
         <p>Termin 1: {{ lesson.timeslot1 }}</p>
       </div>
